@@ -14,13 +14,3 @@ const searchForItem = (item) => {
   // Drop the constant so it becomes O(n)
 };
 searchForItem("banana");
-
-const name = ["anugrha tamang", "ramit tamang", "vandai tamang"];
-const findName = (name) => {
-  for (let i = 0; i < name.length; i++) {
-    if (name[i] === name) {
-      console.log(`found the ${name}`);
-    }
-  }
-};
-findName("ramit tamang");
