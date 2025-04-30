@@ -1,5 +1,7 @@
-const reverseInt = (num) => {
-  const one = num.toString().split("").reverse().join("");
-  return parseInt(one) * Math.sign(num);
+//This is all about the integer reverse.
+const ReverseInt = (num) => {
+  const reversed = num.toString().split("").reverse().join("");
+  console.log(parseInt(reversed));
 };
-console.log(reverseInt(123));
+ReverseInt(123); //321
+ReverseInt(123456789); //output: 987654321

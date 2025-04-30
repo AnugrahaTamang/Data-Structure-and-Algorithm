@@ -1,14 +1,15 @@
-const one = (n) => {
-  for (let i = 0; i <= n; i++) {
-    if (i % 3 == 0 && i % 5 == 0) {
-      console.log("fizzbuzz");
-    } else if (i % 3 == 0) {
-      console.log("fizz");
-    } else if (i % 3 == 0) {
-      console.log("BUZZ");
+//FizzBuzz: 1. print numbers from 1 to n. 2. if number is divisible by 3 print "fizz". 3. if the number is divisible by 5, print the buzz. 4. if number is divisible by 3 and 5, pring the fizzbuzz. 5. else print the number.
+const FizzBuzz = (num) => {
+  for (let i = 1; i <= num; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("Fizz Buzz");
+    } else if (i % 3 === 0) {
+      console.log("Fizz");
+    } else if (i % 5 === 0) {
+      console.log("Buzz");
     } else {
-      console.log(n);
+      console.log(`Number: ${i}`);
     }
   }
 };
-console.log(one(15));
+FizzBuzz(15);
