@@ -1,4 +1,3 @@
-//This is about the linklist
 class Node {
   constructor(value) {
     this.head = value;
@@ -12,36 +11,35 @@ class Linklist {
     this.length = 1;
   }
   push(item) {
-    let newNode = new Node(item);
+    const newItem = new Node(item);
     if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
+      this.head = newItem;
+      this.tail = newItem;
     }
-    this.tail.next = newNode;
-    this.tail = newNode;
+    this.tail.next = newItem;
+    this.tail = newItem;
     this.length++;
   }
   pop() {
-    if (!this.head) {
-      return null;
-    }
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
     let temp = this.head;
     let prev = this.head;
+    if (!this.head) return undefined;
     while (temp.next) {
       prev = temp;
       temp = prev.next;
     }
+
     this.tail = prev;
     this.tail.next = null;
     this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
     return temp;
   }
-  unshift(item) {
-    let newNode = new Node(item);
+  unshift(value) {
+    const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -52,18 +50,12 @@ class Linklist {
     return this;
   }
   shift() {
-    if (this.head) {
-      return null;
-    }
-    //poiint the first node/element
+    if (!this.head) return undefined;
     let temp = this.head;
-    //2. move the head to next node/element
     this.head = this.head.next;
-    //remove the first element
     temp.next = null;
     this.length--;
     if (this.length === 0) {
-      this.head = null;
       this.tail = null;
     }
     return temp;
@@ -71,17 +63,87 @@ class Linklist {
   getfirst() {
     return this.head;
   }
+  getLast() {
+    if (!this.head) {
+      return null;
+    }
+    let temp = this.head;
+    while (temp) {
+      if (!temp.next) {
+        return temp;
+      }
+      temp = temp.next;
+    }
+  }
+  get(index) {
+    let counter = 0;
+    let temp = this.head;
+    while (temp) {
+      if (counter === index) {
+        return temp;
+      }
+      counter++;
+      temp = temp.next;
+    }
+    return null;
+  }
+  set(index, value) {
+    let temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
+  }
+  insert(index, value) {
+    if (index === 0) {
+      return this.unshift(value);
+    }
+    if (index === this.length) {
+      return this.push(value);
+    }
+    const newNode = new Node(value);
+    const temp = this.get(index - 1);
+    newNode.next = temp.next;
+    temp.next = newNode;
+    this.length++;
+    return true;
+  }
+  size() {
+    let counter = 0;
+    let temp = this.head;
+    while (temp) {
+      counter++;
+      temp = temp.next;
+    }
+    return counter;
+  }
+  clear() {
+    this.head = null;
+  }
 }
-const mylinklist = new Linklist("one");
-mylinklist.push("two");
-mylinklist.push("three");
+const mylinklist = new Linklist("james");
+console.log(mylinklist);
+mylinklist.push("hari");
+mylinklist.push("syam");
+mylinklist.push("amisha");
+mylinklist.push("suman");
+mylinklist.push("manish");
+mylinklist.push("vandai");
+console.log(mylinklist);
 mylinklist.pop();
-mylinklist.pop();
+console.log(mylinklist);
 mylinklist.unshift("anugraha tamang");
-mylinklist.unshift("ramit tamang");
-mylinklist.unshift("vandai tamang");
-mylinklist.unshift("ram");
+console.log(mylinklist);
 mylinklist.shift();
-mylinklist.shift();
-mylinklist.getfirst();
+console.log(mylinklist);
+console.log(mylinklist.getfirst());
+console.log(mylinklist.getLast());
+console.log(mylinklist.get(3));
+console.log(mylinklist.set(3, "amrit"));
+console.log(mylinklist.get(3));
+console.log(mylinklist.insert(1, "jeewan tamang"));
+console.log(mylinklist);
+console.log(mylinklist.size());
+console.log(mylinklist.clear());
 console.log(mylinklist);
